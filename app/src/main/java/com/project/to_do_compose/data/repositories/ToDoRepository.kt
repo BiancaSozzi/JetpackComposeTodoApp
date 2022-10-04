@@ -2,9 +2,11 @@ package com.project.to_do_compose.data.repositories
 
 import com.project.to_do_compose.data.ToDoDAO
 import com.project.to_do_compose.data.models.ToDoTask
+import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
+@ViewModelScoped // It will be alive as long as the shared view model in which we inject the repository is
 class ToDoRepository @Inject constructor(private val toDoDAO: ToDoDAO) {
 
     val getAllTasks: Flow<List<ToDoTask>> = toDoDAO.getAllTasks()

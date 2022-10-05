@@ -45,7 +45,7 @@ interface ToDoDAO {
             "CASE " +
             "   WHEN priority = 'HIGH' THEN 1 " +
             "   WHEN priority = 'MEDIUM' THEN 2" +
-            "   WHEN priority = 'LOW' THEN 3" +
+            "   WHEN priority = 'LOW' THEN 3 " +
             "END")
     fun sortByHighPriority(): Flow<List<ToDoTask>>
 }

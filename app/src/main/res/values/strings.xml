@@ -2,6 +2,9 @@
     <string name="app_name">To-do-compose</string>
     <string name="add_button">Add Button</string>
     <string name="search_tasks_action_button">Search Tasks</string>
+    <string name="search_button">Search Button</string>
+    <string name="close_search_button">Close Button</string>
     <string name="sort_tasks_action_button">Sort Tasks</string>
     <string name="delete_all_tasks_action_button">Delete All</string>
+    <string name="search_placeholder_text">Search</string>
 </resources>

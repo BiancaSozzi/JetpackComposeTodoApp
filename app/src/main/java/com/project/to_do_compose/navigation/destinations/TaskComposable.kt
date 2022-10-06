@@ -3,7 +3,7 @@ package com.project.to_do_compose.navigation.destinations
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
+import androidx.navigation.compose.navArgument
 import com.project.to_do_compose.util.Action
 import com.project.to_do_compose.util.Constants.TASK_ARGUMENT_KEY
 import com.project.to_do_compose.util.Constants.TASK_SCREEN

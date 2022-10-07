@@ -6,11 +6,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.project.to_do_compose.navigation.destinations.listComposable
 import com.project.to_do_compose.navigation.destinations.taskComposable
+import com.project.to_do_compose.ui.viewmodels.SharedViewModel
 import com.project.to_do_compose.util.Constants.LIST_SCREEN
 
 @Composable
 fun SetUpNavigation(
-    navController: NavHostController
+    navController: NavHostController,
+    sharedViewModel: SharedViewModel
 ){
     // save our backstack of our composable screens through the application
     val screen = remember(navController) { Screens(navController) }
@@ -19,7 +21,8 @@ fun SetUpNavigation(
     NavHost(navController, startDestination = LIST_SCREEN) {
         listComposable(
             // screen.task will navigate to the corresponding taskId screen
-            navigateToTaskScreen = screen.task
+            navigateToTaskScreen = screen.task,
+            sharedViewModel = sharedViewModel
         )
         taskComposable (
             navigateToListScreen = screen.list

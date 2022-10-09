@@ -25,7 +25,11 @@ fun NavGraphBuilder.taskComposable(
     ) { navBackStackEntry ->
         // Get the taskId from the route argument
         val taskId = navBackStackEntry.arguments!!.getInt(TASK_ARGUMENT_KEY)
-        sharedViewModel.getSelectedTask(taskId)
+
+        LaunchedEffect(key1 = taskId) {
+            sharedViewModel.getSelectedTask(taskId)
+        }
+
         // observe value
         val selectedTask by sharedViewModel.selectedTask.collectAsState()
 

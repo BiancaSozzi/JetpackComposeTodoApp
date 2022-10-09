@@ -37,6 +37,7 @@ fun ListScreen(
 
     // Observe DB
     val allTasks = sharedViewModel.allTasks.collectAsState()
+    val searchedTasks = sharedViewModel.searchedTasks.collectAsState()
     // Trigger all tasks to be fetched
     LaunchedEffect(key1 = true) {
         /* Launches a block into the composition coroutine context (in this case the getAllTasks)
@@ -65,9 +66,11 @@ fun ListScreen(
             )
         },
         content = { ListContent(
-            tasks = allTasks.value,
+            allTasks = allTasks.value,
+            searchedTasks = searchedTasks.value,
+            searchAppBarState = searchAppBarState,
             navigateToTaskScreen = navigateToTaskScreen
-        ) },
+        )},
         floatingActionButton = {
             ListFab(navigateToTaskScreen)
         }

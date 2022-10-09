@@ -92,7 +92,7 @@ fun SearchAppBar(
                 imeAction = ImeAction.Search
             ),
             keyboardActions = KeyboardActions(
-                // When the user clicks on the search button of the keyboard, it should trigge the search
+                // When the user clicks on the search button of the keyboard, it should trigger the search
                 onSearch = {
                     onSearchClicked(text, sharedViewModel)
                 }
@@ -110,5 +110,5 @@ fun SearchAppBar(
 }
 
 private fun onSearchClicked(text: String, viewModel: SharedViewModel) {
-    viewModel.searchAppBarState.value = SearchAppBarState.TRIGGERED
+    viewModel.searchDatabase(text)
 }

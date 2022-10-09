@@ -27,17 +27,20 @@ import com.project.to_do_compose.ui.theme.PRIORITY_INDICATOR_SIZE
 import com.project.to_do_compose.ui.theme.TASK_ITEM_ELEVATION
 import com.project.to_do_compose.ui.theme.taskItemBackgroundColor
 import com.project.to_do_compose.ui.theme.taskItemTextColor
+import com.project.to_do_compose.util.RequestState
 
 @ExperimentalMaterialApi
 @Composable
 fun ListContent(
-    tasks: List<ToDoTask>,
+    tasks: RequestState<List<ToDoTask>>,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
-    if (tasks.isEmpty()) {
-        EmptyContent()
-    } else {
-        DisplayTasks(tasks = tasks, navigateToTaskScreen = navigateToTaskScreen)
+    if (tasks is RequestState.Success) {
+        if (tasks.data.isEmpty()) {
+            EmptyContent()
+        } else {
+            DisplayTasks(tasks = tasks.data, navigateToTaskScreen = navigateToTaskScreen)
+        }
     }
 }
 

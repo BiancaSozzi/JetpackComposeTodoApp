@@ -4,6 +4,9 @@ import androidx.navigation.NavHostController
 import com.project.to_do_compose.util.Action
 import com.project.to_do_compose.util.Constants.LIST_SCREEN
 
+/**
+ * This class handles the navigation of the app
+ */
 class Screens(navController: NavHostController) {
     val list: (Action) -> Unit = { action ->
         navController.navigate("list/{$action.name}") {

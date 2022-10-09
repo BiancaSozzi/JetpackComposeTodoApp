@@ -16,7 +16,8 @@ fun NavGraphBuilder.taskComposable(
         arguments = listOf(navArgument(TASK_ARGUMENT_KEY){
             type = NavType.IntType
         })
-    ) {
-
+    ) { navBackStackEntry ->
+        // Get the taskId from the route argument
+        val taskId = navBackStackEntry.arguments!!.getInt(TASK_ARGUMENT_KEY)
     }
 }

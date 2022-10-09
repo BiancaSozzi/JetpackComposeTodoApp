@@ -17,6 +17,7 @@ import com.project.to_do_compose.R
 import com.project.to_do_compose.ui.screens.appBar.listScreen.ListAppBar
 import com.project.to_do_compose.ui.theme.fabBackgroundColor
 import com.project.to_do_compose.ui.viewmodels.SharedViewModel
+import com.project.to_do_compose.util.Action
 import com.project.to_do_compose.util.SearchAppBarState
 
 @ExperimentalMaterialApi
@@ -27,6 +28,8 @@ fun ListScreen(
 ) {
     val searchAppBarState: SearchAppBarState by sharedViewModel.searchAppBarState
     val searchTextState: String by sharedViewModel.searchTextState
+    val action: Action by sharedViewModel.action
+
     // Observe DB
     val allTasks = sharedViewModel.allTasks.collectAsState()
     // Trigger all tasks to be fetched
@@ -35,6 +38,9 @@ fun ListScreen(
         and the launch effect will be cancelled and relaunched when the launch effect recompose with a new key */
         sharedViewModel.getAllTasks()
     }
+
+    // Call the sharedViewModel to handle the correct action
+    sharedViewModel.handleDatabaseActions(action = action)
 
     Scaffold(
         topBar = {

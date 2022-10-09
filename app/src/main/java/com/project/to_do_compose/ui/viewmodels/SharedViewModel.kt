@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.project.to_do_compose.data.models.Priority
 import com.project.to_do_compose.data.models.ToDoTask
 import com.project.to_do_compose.data.repositories.ToDoRepository
 import com.project.to_do_compose.util.RequestState
@@ -20,6 +21,11 @@ import kotlinx.coroutines.launch
 class SharedViewModel @Inject constructor(
     private val repository: ToDoRepository
 ): ViewModel() {
+
+    val id: MutableState<Int> = mutableStateOf(0)
+    val title: MutableState<String> = mutableStateOf("")
+    val description: MutableState<String> = mutableStateOf("")
+    val priority: MutableState<Priority> = mutableStateOf(Priority.LOW)
 
     private val _allTasks = MutableStateFlow<RequestState<List<ToDoTask>>>(RequestState.Idle)
     val allTasks: StateFlow<RequestState<List<ToDoTask>>> = _allTasks
@@ -48,6 +54,20 @@ class SharedViewModel @Inject constructor(
             repository.getSelectedTask(taskId).collect { task ->
                 _selectedTask.value = task
             }
+        }
+    }
+
+    fun updateTaskFields(selectedTask: ToDoTask?) {
+        if (selectedTask != null) {
+            id.value = selectedTask.id
+            title.value = selectedTask.title
+            description.value = selectedTask.description
+            priority.value = selectedTask.priority
+        } else {
+            id.value = 0
+            title.value = ""
+            description.value = ""
+            priority.value = Priority.LOW
         }
     }
 

@@ -24,9 +24,15 @@ import com.project.to_do_compose.util.Action
 
 @Composable
 fun TaskAppBar(
-    navigateToListScreen: (Action) -> Unit
+    navigateToListScreen: (Action) -> Unit,
+    selectedTask: ToDoTask?
 ) {
-    NewTaskAppBar(navigateToListScreen = navigateToListScreen)
+    if (selectedTask == null) {
+        NewTaskAppBar(navigateToListScreen = navigateToListScreen)
+    } else {
+        EditTaskAppBar(navigateToListScreen = navigateToListScreen, selectedTask = selectedTask)
+    }
+
 }
 
 @Composable

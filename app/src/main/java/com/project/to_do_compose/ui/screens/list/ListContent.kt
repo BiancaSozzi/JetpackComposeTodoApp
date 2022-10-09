@@ -5,9 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
@@ -35,7 +34,20 @@ fun ListContent(
     tasks: List<ToDoTask>,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
-    LazyColumn(){
+    if (tasks.isEmpty()) {
+        EmptyContent()
+    } else {
+        DisplayTasks(tasks = tasks, navigateToTaskScreen = navigateToTaskScreen)
+    }
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun DisplayTasks(
+    tasks: List<ToDoTask>,
+    navigateToTaskScreen: (taskId: Int) -> Unit
+) {
+    LazyColumn{
         items(items = tasks, key = { task ->
             task.id
         }) { task ->
@@ -78,9 +90,7 @@ fun TaskItem(
                     .weight(1f),
                     contentAlignment = Alignment.TopEnd
                 ) {
-                    Canvas(modifier = Modifier
-                        .width(PRIORITY_INDICATOR_SIZE)
-                        .height(PRIORITY_INDICATOR_SIZE)
+                    Canvas(modifier = Modifier.size(PRIORITY_INDICATOR_SIZE)
                     ){
                         drawCircle(
                             color = toDoTask.priority.color

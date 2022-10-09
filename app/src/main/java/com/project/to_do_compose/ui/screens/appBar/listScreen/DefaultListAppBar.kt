@@ -14,7 +14,7 @@ import com.project.to_do_compose.ui.theme.topAppBarContentColor
 fun DefaultListAppBar(
     onSearchClicked: () -> Unit,
     onSortClicked: (Priority) -> Unit,
-    onDeleteAllClicked: () -> Unit
+    onDeleteAllConfirmed: () -> Unit
 ) {
     TopAppBar(
         title = {
@@ -25,7 +25,7 @@ fun DefaultListAppBar(
         },
         backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor,
         actions = {
-            ListAppBarActions(onSearchClicked, onSortClicked, onDeleteAllClicked)
+            ListAppBarActions(onSearchClicked, onSortClicked, onDeleteAllConfirmed)
         }
     )
 }

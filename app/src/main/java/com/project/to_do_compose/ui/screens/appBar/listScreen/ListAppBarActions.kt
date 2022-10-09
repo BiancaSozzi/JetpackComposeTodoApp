@@ -18,21 +18,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.project.to_do_compose.R
+import com.project.to_do_compose.components.DisplayAlertDialog
 import com.project.to_do_compose.components.PriorityItem
 import com.project.to_do_compose.data.models.Priority
 import com.project.to_do_compose.ui.theme.LARGE_PADDING
 import com.project.to_do_compose.ui.theme.Typography
 import com.project.to_do_compose.ui.theme.topAppBarContentColor
+import com.project.to_do_compose.util.Action
 
 @Composable
 fun ListAppBarActions(
     onSearchClicked: () -> Unit,
     onSortClicked: (Priority) -> Unit,
-    onDeleteAllClicked: () -> Unit
+    onDeleteAllConfirmed: () -> Unit
 ) {
+    var openDialog by remember { mutableStateOf(false) }
+
+    DisplayAlertDialog(
+        title = stringResource(id = R.string.delete_all_tasks),
+        message = stringResource(id = R.string.delete_all_tasks_confirmation),
+        openDialog = openDialog,
+        closeDialog = { openDialog = false },
+        onYesClicked = { onDeleteAllConfirmed() }
+    )
+
     SearchAction(onSearchClicked)
     SortAction(onSortClicked)
-    DeleteAllAction(onDeleteAllClicked)
+    DeleteAllAction(onDeleteAllClicked = {
+        openDialog = true
+    })
 }
 
 @Composable

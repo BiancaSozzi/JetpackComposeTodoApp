@@ -20,7 +20,7 @@ fun ListAppBar(
                 onSortClicked = {
 
                 },
-                onDeleteAllClicked = {
+                onDeleteAllConfirmed = {
                     sharedViewModel.action.value = Action.DELETE_ALL
                 })
         } 

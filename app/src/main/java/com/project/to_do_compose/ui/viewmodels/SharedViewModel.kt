@@ -102,8 +102,8 @@ class SharedViewModel @Inject constructor(
             Action.ADD -> { addTask() }
             Action.UPDATE -> { updateTask() }
             Action.DELETE -> { deleteTask() }
-            Action.DELETE_ALL -> {}
-            Action.UNDO -> {}
+            Action.DELETE_ALL -> { }
+            Action.UNDO -> { addTask() }
             else -> {}
         }
         // Reset action value

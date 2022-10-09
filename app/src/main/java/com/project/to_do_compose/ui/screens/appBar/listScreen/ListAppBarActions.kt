@@ -28,11 +28,11 @@ import com.project.to_do_compose.ui.theme.topAppBarContentColor
 fun ListAppBarActions(
     onSearchClicked: () -> Unit,
     onSortClicked: (Priority) -> Unit,
-    onDeleteClicked: () -> Unit
+    onDeleteAllClicked: () -> Unit
 ) {
     SearchAction(onSearchClicked)
     SortAction(onSortClicked)
-    DeleteAllAction(onDeleteClicked)
+    DeleteAllAction(onDeleteAllClicked)
 }
 
 @Composable
@@ -104,7 +104,7 @@ fun SortAction(
 
 @Composable
 fun DeleteAllAction(
-    onDeleteClicked: () -> Unit
+    onDeleteAllClicked: () -> Unit
 ) {
     // Hold the state of the dropdown. By default it won't be expanded
     var expanded by remember { mutableStateOf(false) }
@@ -124,7 +124,7 @@ fun DeleteAllAction(
             onDismissRequest = { expanded = false }
         ) {
             DropdownMenuItem(onClick = {
-                onDeleteClicked()
+                onDeleteAllClicked()
                 expanded = false
             }) {
                 Text(

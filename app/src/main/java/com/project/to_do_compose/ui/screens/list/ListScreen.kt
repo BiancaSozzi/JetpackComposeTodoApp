@@ -38,11 +38,18 @@ fun ListScreen(
     // Observe DB
     val allTasks = sharedViewModel.allTasks.collectAsState()
     val searchedTasks = sharedViewModel.searchedTasks.collectAsState()
+
+    // Sort Tasks
+    val sortState by sharedViewModel.sortState.collectAsState()
+    val lowPriorityTasks by sharedViewModel.lowPriorityTasks.collectAsState()
+    val highPriorityTasks by sharedViewModel.highPriorityTasks.collectAsState()
+
     // Trigger all tasks to be fetched
     LaunchedEffect(key1 = true) {
         /* Launches a block into the composition coroutine context (in this case the getAllTasks)
         and the launch effect will be cancelled and relaunched when the launch effect recompose with a new key */
         sharedViewModel.getAllTasks()
+        sharedViewModel.readSortState()
     }
 
     val scaffoldState = rememberScaffoldState()
@@ -68,6 +75,9 @@ fun ListScreen(
         content = { ListContent(
             allTasks = allTasks.value,
             searchedTasks = searchedTasks.value,
+            lowPriorityTasks = lowPriorityTasks,
+            highPriorityTasks = highPriorityTasks,
+            sortState = sortState,
             searchAppBarState = searchAppBarState,
             navigateToTaskScreen = navigateToTaskScreen
         )},

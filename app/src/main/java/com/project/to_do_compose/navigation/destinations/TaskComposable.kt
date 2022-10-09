@@ -29,7 +29,8 @@ fun NavGraphBuilder.taskComposable(
         // observe value
         val selectedTask by sharedViewModel.selectedTask.collectAsState()
 
-        LaunchedEffect(key1 = taskId) {
+        // Key is selectedTask so that when the fields are filled they have the latest data
+        LaunchedEffect(key1 = selectedTask) {
             sharedViewModel.updateTaskFields(selectedTask)
         }
 

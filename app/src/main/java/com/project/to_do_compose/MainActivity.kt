@@ -23,6 +23,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TodocomposeTheme {
+                /* Create a NavHostController in a place in your composable hierarchy
+                where all composables that need to reference it have access to it */
                 navController = rememberNavController()
                 SetUpNavigation(
                     navController = navController,

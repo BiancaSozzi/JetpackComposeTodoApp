@@ -14,7 +14,7 @@ import com.project.to_do_compose.util.toAction
 
 @ExperimentalMaterialApi
 fun NavGraphBuilder.listComposable(
-    navigateToTaskScreen: (taskId: Int) -> Unit,
+    navigateToTaskScreen: (taskId: Int) -> Unit, // knows how to navigate to the task screen
     sharedViewModel: SharedViewModel
 ) {
     composable(
@@ -25,6 +25,8 @@ fun NavGraphBuilder.listComposable(
     ) { navBackStackEntry ->
         val action = navBackStackEntry.arguments?.getString(LIST_ARGUMENT_KEY).toAction()
 
+        /* Launches a block into the composition coroutine context
+        and the launch effect will be cancelled and relaunched when the launch effect recompose with a new key */
         LaunchedEffect(key1 = action) {
             sharedViewModel.action.value = action
         }

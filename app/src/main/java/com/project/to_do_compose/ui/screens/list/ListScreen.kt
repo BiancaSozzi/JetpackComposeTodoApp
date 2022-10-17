@@ -63,8 +63,8 @@ fun ListScreen(
         action = action
     )
 
+    // Material Design visual layout Structure
     Scaffold(
-        scaffoldState = scaffoldState, // Snackbar is not displayed without adding this state
         topBar = {
             ListAppBar(
                 sharedViewModel = sharedViewModel,
@@ -87,7 +87,8 @@ fun ListScreen(
         )},
         floatingActionButton = {
             ListFab(navigateToTaskScreen)
-        }
+        },
+        scaffoldState = scaffoldState, // Snackbar is not displayed without adding this state
     )
 }
 

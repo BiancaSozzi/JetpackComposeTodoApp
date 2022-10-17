@@ -27,6 +27,7 @@ private val LightColorPalette = lightColors(
     */
 )
 
+// Application Theme
 @Composable
 fun TodocomposeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
@@ -34,7 +35,7 @@ fun TodocomposeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compo
     } else {
         LightColorPalette
     }
-
+    // We can override the values of this composable as we need to
     MaterialTheme(
         colors = colors,
         typography = Typography,

@@ -119,6 +119,7 @@ fun DisplayTasks(
     onSwipeToDelete: (Action, ToDoTask) -> Unit,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
+    // RecyclerView replacement
     LazyColumn{
         items(items = tasks, key = { task ->
             task.id
@@ -140,6 +141,7 @@ fun DisplayTasks(
                 dismissThresholds = { FractionalThreshold(0.2f) },
                 background = { RedBackground(degrees = degrees) },
                 dismissContent = {
+                    // Set up the composable for each element in the list
                     TaskItem(toDoTask = task, navigateToTaskScreen = navigateToTaskScreen)
                 }
             )
@@ -160,7 +162,7 @@ fun TaskItem(
         shape = RectangleShape,
         elevation = TASK_ITEM_ELEVATION,
         onClick = {
-            navigateToTaskScreen(toDoTask.id)
+            navigateToTaskScreen(toDoTask.id) // Here we navigate to the corresponding task
         }
     ) {
         Column(modifier = Modifier

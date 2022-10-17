@@ -14,7 +14,7 @@ import com.project.to_do_compose.util.Constants.TASK_ARGUMENT_KEY
 import com.project.to_do_compose.util.Constants.TASK_SCREEN
 
 fun NavGraphBuilder.taskComposable(
-    navigateToListScreen: (Action) -> Unit,
+    navigateToListScreen: (Action) -> Unit, // knows how to navigate to the list screen
     sharedViewModel: SharedViewModel
 ) {
     composable(
